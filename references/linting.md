@@ -8,13 +8,12 @@
    - If config exists in `pyproject.toml`: Create `ruff.toml` by merging existing settings with `assets/ruff.toml` (preserve project-specific rules like `target-version`, `known-first-party`, custom ignores, etc.)
    - If `ruff.toml` already exists: Enhance it with missing rules from `assets/ruff.toml`
 3. Adapt to project: Review and modify rules based on project needs (see below)
-4. Run Ruff: `ruff check --fix <path>` and `ruff format <path>`
 
 ### Adapting `ruff.toml` to Project
 
 The `assets/ruff.toml` provides a strict baseline. Adjust based on project context:
 
-- Python < 3.10: Change `target-version` accordingly.
+- Python < 3.12: Change `target-version` accordingly.
 - Python >= 3.13: Remove `I002` and `required-imports` for `from __future__ import annotations`.
 - CLI/scripts: Consider ignoring `T20` (print statements).
 - Data science: May relax `ANN` for notebooks, add `"*.ipynb"` to per-file-ignores.

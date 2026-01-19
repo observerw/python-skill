@@ -7,12 +7,14 @@ description: Comprehensive guide for the entire Python programming process. This
 
 ## Toolchain
 
+ALWAYS use `--help` if more information about the cli tool is needed.
+
 - Type Checking: `ty check <FILE_PATH> --output-format concise`
 - Lint: `ruff check --fix --unsafe-fixes <FILE_PATH>`
-  - Unsafe fixes are allowed, but you must review changes before committing
+  - Unsafe fixes are allowed, but you MUST review changes before committing
 - Format: `ruff format <FILE_PATH>`
 - Run tests: `uv run pytest`
-- Sync latest deps: `uv sync --upgrade`
+- Sync deps: `uv sync --upgrade`
 - NEVER use `python`; use `uv run` instead
 
 ## Async Programming
@@ -22,3 +24,4 @@ description: Comprehensive guide for the entire Python programming process. This
 ## References
 
 - [Linting and Code Quality](references/linting.md): MUST be read first when aiming to improve code quality.
+- [Logging Guidelines](references/logging.md): Standards for structuring logs.
