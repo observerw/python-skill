@@ -21,8 +21,11 @@ ALWAYS use `--help` if more information about the cli tool is needed.
 
 - Always use [`anyio`](https://anyio.readthedocs.io/en/stable/)
 
-## References
+## Mandatory Reading (Context-Specific)
 
-- [Exception Design](references/exceptions.md): Guidelines for designing exceptions in libraries and applications.
-- [Logging Guidelines](references/logging.md): Standards for structuring logs.
-- [Linting and Code Quality](references/linting.md): MUST be read first when aiming to improve code quality.
+You MUST read the following documents when performing related tasks:
+
+- **Exception Design**: Read `references/exceptions.md` when designing, refactoring, or debugging error handling and custom exceptions.
+- **Logging Guidelines**: Read `references/logging.md` before adding or modifying logging calls, or when configuring loggers.
+- **Linting and Code Quality**: Read `references/linting.md` before performing code reviews, fixing linting errors, or starting any refactoring task.
+- **Type Hints**: Read `references/type-hints-cheat-sheet.md` when adding type annotations to complex data structures, generics, or protocol definitions.
