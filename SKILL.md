@@ -30,6 +30,13 @@ When deeply modifying code in these areas, you MUST read the corresponding docum
 ```python
 from __future__ import annotations
 
+# RULE: Use relative imports for intra-package imports.
+# RULE: Use absolute imports for inter-package and third-party imports.
+from . import internal_module
+from anyio import fail_after
+# ANTI-PATTERN: from mypackage.module import thing  # (when inside mypackage)
+# ANTI-PATTERN: from ..other_package import thing
+
 import time
 from collections.abc import Awaitable, Callable
 from typing import Any, Protocol, TypedDict
