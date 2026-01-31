@@ -282,6 +282,62 @@ def load_config_correct() -> dict[str, Any]:
     return json.loads(config_text)
 
 
+def process_data_shallow(items: list[str]) -> None:
+    """
+    RULE: Keep indentation shallow (Linux kernel style). Max 3 levels.
+    RULE: Use guard clauses (early return/continue) to flatten logic.
+
+    ANTI-PATTERN:
+        if items:
+            for item in items:
+                if item.startswith("valid"):
+                    process(item)
+    """
+    if not items:
+        return
+
+    for item in items:
+        if not item.startswith("valid"):
+            continue
+
+        # process(item)
+
+
+class SafeResource:
+    """
+    RULE: APIs owning resources MUST be context managers.
+    RULE: Do NOT expose manual open/close methods.
+
+    ANTI-PATTERN:
+        res = Resource()
+        res.open()  # Don't make users do this
+        res.close()
+    """
+
+    def __enter__(self) -> SafeResource:
+        return self
+
+    def __exit__(self, *args: object) -> None:
+        self._cleanup()
+
+    def _cleanup(self) -> None:
+        pass
+
+    def use_builtin_resource(self) -> None:
+        """
+        RULE: Never manually manage resources that support context managers.
+
+        ANTI-PATTERN:
+            f = open("file.txt")
+            try:
+                f.read()
+            finally:
+                f.close()
+        """
+        with open("file.txt") as f:
+            _ = f.read()
+
+
 @logger.catch(reraise=True)
 async def main() -> None:
     """RULE: Use @logger.catch at entrypoints for automatic exception logging."""
